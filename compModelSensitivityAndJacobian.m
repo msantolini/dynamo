@@ -49,10 +49,7 @@ VarNames = [ SpeciesNames VarParams ];
 % WriteODEFunctionForSensitivity(SBMLModel);
 % WriteODEFunction(SBMLModel);
 
-
-%% need to ensure we reach steady state here
-% [time, values, varnames] = SolveODEFunction(SBMLModel);
-
+%% Steady-state and Jacobian
 % initial concentrations
 x0 = eval(model_name);
 
