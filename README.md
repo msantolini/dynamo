@@ -1,6 +1,7 @@
 # DYNAMO
 
-These are the codes associated to the article Santolini, M., Barabási, A.-L., Recovering perturbation patterns of biological networks from their topology (in preparation).
+These are the codes associated to the article: 
+**Santolini,M. and Barabasi,A.-L. (2018) Predicting perturbation patterns from the topology of biological networks. Proc Natl Acad Sci USA, 169, 201720589.** ([pdf](https://marcsantolini.files.wordpress.com/2018/06/1720589115-full.pdf))
 
 A test model BIOMD0000000404.xml corresponding to bacterial chemotaxis is provided. 
 
