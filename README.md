@@ -7,7 +7,7 @@ These are the codes associated to the article:
 A test model BIOMD0000000404.xml corresponding to bacterial chemotaxis is provided. 
 
 ## Jacobian computation
-First compute the Jacobian using compModelSensitivityAndJacobian.m. It is a matlab code and it needs libSBML (http://sbml.org/Software/libSBML/Downloading_libSBML).
+First compute the Jacobian using compModelSensitivityAndJacobian.m. It is a matlab code and it requires libSBML to be run (http://sbml.org/Software/libSBML/Downloading_libSBML).
 
 ## Computation of DYNAMO accuracies
 The core of the DYNAMO computation and accuracy evaluation are done in compAccuracies.R (reproduces figure 4b). 
