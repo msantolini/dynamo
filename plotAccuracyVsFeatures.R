@@ -4,36 +4,6 @@ require(igraph)
 library(car)
 
 
-######################
-## success features ##
-######################
-t <- read.csv('2017-02-24_BioModels-access-statistics.csv')
-
-dnow <- as.Date('2017/02/24', format='%Y/%m/%d')
-dall <- as.Date(t$Date.of.publication, format='%d/%m/%y')
-days <- as.numeric(dnow-dall)
-
-pdf('plotModelAccessVsAge.pdf')
-plot.0(days,t$Access.hits,
-       xlab='Model age (days)',
-       ylab='Model access hits',
-       log='y')
-dev.off()
-
-pdf('plotModelDownloadVsAge.pdf')
-plot.0(days,t$Direct.downloads,
-       xlab='Model age (days)',
-       ylab='Model downloads',
-       log='y')
-dev.off()
-
-pdf('plotModelDownloadVsAccess.pdf')
-plot.0(t$Access.hits,t$Direct.downloads,
-       xlab='Model access',
-       ylab='Model downloads',
-       log='xy')
-dev.off()
-
 
 
 #######################
@@ -68,9 +38,6 @@ clustering <- NULL
 structural_holes_mean <- NULL
 structural_holes_max <- NULL
 nb_infomap_communities <- NULL
-access_hits <- NULL
-direct_downloads <- NULL
-model_age <- NULL
 degree_cor_mean <- NULL
 prop_infomap_communities <- NULL
 for (dir in dirs){
@@ -123,12 +90,6 @@ for (dir in dirs){
 
     degree_cor_mean <- c(degree_cor_mean, assortativity_degree(G))
     
-    ind <- match(dir,  t$BioModels.Identifier)
-    access_hits <- c(access_hits, t$Access.hits[ind])
-    direct_downloads <- c(direct_downloads, t$Direct.downloads[ind])
-    model_age <- c(model_age, days[ind])
-    
-
     nb_infomap_communities <- c(nb_infomap_communities, length(infomap.community(G)))
     prop_infomap_communities <- c(prop_infomap_communities, length(infomap.community(G))/length(V(G)))
 
@@ -546,61 +507,6 @@ for (method in c('spearman')){
                  #main=fullname,
                  cex=1)
         dev.off()
-
-
-        pdf(paste0('accuracy_vs_feature/plotAccuracyVsAccessHits_',method,'_',model,'.pdf'))
-        plot.cor(log10(access_hits), 
-                 Cors[,i],
-                 pch=19,
-                 type='p',
-                 log='',
-                 mar=c(5,5,5,5),
-                 #ylim=c(0,1),
-                 fitline=TRUE,
-                 #fitlog=TRUE,
-                 ylab=paste0(model,' model correlation (',method,')'),
-                 xlab='Model access hits on BioModels (log10)',
-                 main=paste(nrow(Cors),'models'),
-                 #main=fullname,
-                 cex=1)
-        dev.off()
-
-
-        pdf(paste0('accuracy_vs_feature/plotAccuracyVsDownloads_',method,'_',model,'.pdf'))
-        plot.cor(log10(direct_downloads), 
-                 Cors[,i],
-                 pch=19,
-                 type='p',
-                 log='',
-                 mar=c(5,5,5,5),
-                 #ylim=c(0,1),
-                 fitline=TRUE,
-                 #fitlog=TRUE,
-                 ylab=paste0(model,' model correlation (',method,')'),
-                 xlab='Model downloads on BioModels (log10)',
-                 main=paste(nrow(Cors),'models'),
-                 #main=fullname,
-                 cex=1)
-        dev.off()
-
-
-        pdf(paste0('accuracy_vs_feature/plotAccuracyVsModelAge_',method,'_',model,'.pdf'))
-        plot.cor(model_age, 
-                 Cors[,i],
-                 pch=19,
-                 type='p',
-                 log='',
-                 mar=c(5,5,5,5),
-                 #ylim=c(0,1),
-                 fitline=TRUE,
-                 #fitlog=TRUE,
-                 ylab=paste0(model,' model correlation (',method,')'),
-                 xlab='Model age on BioModels (days)',
-                 main=paste(nrow(Cors),'models'),
-                 #main=fullname,
-                 cex=1)
-        dev.off()
-
 
 
         pdf(paste0('accuracy_vs_feature/plotAccuracyVsClustering_',method,'_',model,'.pdf'))

@@ -45,20 +45,22 @@ SpeciesNames = GetSpecies(SBMLModel);
 VarNames = [ SpeciesNames VarParams ];
 
 %% Write ODE function
-% Modified version to add a perturbation
-% WriteODEFunctionForSensitivity(SBMLModel);
-% WriteODEFunction(SBMLModel);
+WriteODEFunction(SBMLModel);
 
 %% Steady-state and Jacobian
 % initial concentrations
 x0 = eval(model_name);
 
 % go to steady state without perturbation and save it
+% xss close to x0 so simple integration works well
+% (you can modify the integration time if needed)
+% Other options are to use fsolve or IQM tools 
+% (https://www.intiquan.com/iqm-tools/) but tendency for numerical 
+% instability (lots of small non-zero values) so need to cut-off etc.. 
+% if you have a simple exact method without numerical instability, do not
+% hesitate to push to the repository and contribute!
 [t,x] = ode23tb(eval(model_handle), [0, 10], x0);
 xss = x(end,:);% + randn() * 1e-15;
-
-% Save steady state
-csvwrite('steady_state.csv', xss');
 
 % Compute Jacobian
 J = compJacobian(@(x) eval([ model_name '(10, x)']),xss);

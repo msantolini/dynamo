@@ -1,6 +1,6 @@
 # DYNAMO
 
-These are the codes associated to the article: 
+These are codes associated to the article: 
 
 **Santolini,M. and Barabasi,A.-L. (2018) Predicting perturbation patterns from the topology of biological networks. Proc Natl Acad Sci USA, 169, 201720589.** ([pdf](https://marcsantolini.files.wordpress.com/2018/06/1720589115-full.pdf))
 
@@ -12,6 +12,8 @@ First compute the Jacobian using compModelSensitivityAndJacobian.m. It is a matl
 ## Computation of DYNAMO accuracies
 The core of the DYNAMO computation and accuracy evaluation are done in compAccuracies.R (reproduces figure 4b). 
 
-## Robustness to network perturbation
-The code corresponding to network perturbation (as in Figure 2g) is compEdgeRemoval.R.
+## Comparison between model accuracy and network features
+The code plotAccuracyVsFeatures.R computes the association between model accuracy and network features once DYNAMO has been used for several BioModels (reproduces figure 2G). 
+
+
 
