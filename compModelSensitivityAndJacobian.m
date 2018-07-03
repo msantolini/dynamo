@@ -4,6 +4,7 @@ model='test_model/BIOMD0000000404.xml';
 model_id = 'BIOMD0000000404';
 
 addpath(pwd);
+addpath([ pwd, '/codes_libSBML' ]);
 
 if ~exist(model_id, 'dir')
     mkdir(model_id);
